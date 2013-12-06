@@ -1,5 +1,7 @@
 <?php
 namespace Car;
+use Car\Model\CarTable;
+use Car\Model\Car;
 class Module
 {
 	public function getAutoloaderConfig()
@@ -27,13 +29,13 @@ class Module
 				'factories' => array(
 					'Car\Model\CarTable' => function ($sm) {
 						$tableGateway = $sm->get('CarTableGateway');
-						$table = new \CarTable($tableGateway);
+						$table = new CarTable($tableGateway);
 						return $table;
 					},
 				'CarTableGateway' => function ($sm) {
 							$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
 							$resultSetPrototype = new ResultSet();
-							$resultSetPrototype->setArrayObjectPrototype(new \Car());
+							$resultSetPrototype->setArrayObjectPrototype(new Car());
 							return new TableGateway('cars', $dbAdapter, null, $resultSetPrototype); //Set table name
 						},
 				),

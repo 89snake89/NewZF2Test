@@ -1,4 +1,5 @@
 <?php
+namespace Car\Form;
 use Zend\Form\Form;
 class CarForm extends Form
 {

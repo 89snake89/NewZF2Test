@@ -10,7 +10,9 @@ class CarController extends AbstractActionController
 	protected $carTable;
 	
 	public function indexAction(){
-		return new ViewModel();
+		return new ViewModel(array(
+				'cars' => $this->getCarTable()->fetchAll(),
+		));
 	}
 	
 	public function addAction(){
@@ -26,6 +28,10 @@ class CarController extends AbstractActionController
 	}
 	
 	public function getCarTable(){
-		
+		if(!$this->carTable){
+			$sm = $this->getServiceLocator();
+			$this->carTable = $sm->get('Car\Model\CarTable');
+		}
+		return $this->carTable;
 	}
 }

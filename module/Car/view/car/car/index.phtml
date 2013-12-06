@@ -1,6 +1,4 @@
 <?php
-// module/Album/view/album/album/index.phtml:
-
 $title = 'My cars';
 $this->headTitle($title);
 ?>
@@ -8,23 +6,22 @@ $this->headTitle($title);
 	<?php echo $this->escapeHtml($title); ?>
 </h1>
 <p>
-	<a href="<?php echo $this->url('album', array('action'=>'add'));?>">Add
-		new album</a>
+	<a href="<?php echo $this->url('car', array('action'=>'add'));?>">Add new car</a>
 </p>
 
 <table class="table">
 	<tr>
-		<th>Title</th>
-		<th>Artist</th>
+		<th>Brand</th>
+		<th>Model</th>
 		<th>&nbsp;</th>
 	</tr>
-	<?php foreach ($albums as $album) : ?>
+	<?php foreach ($cars as $car) : ?>
 	<tr>
-		<td><?php echo $this->escapeHtml($album->title);?></td>
-		<td><?php echo $this->escapeHtml($album->artist);?></td>
+		<td><?php echo $this->escapeHtml($car->brand);?></td>
+		<td><?php echo $this->escapeHtml($car->model);?></td>
 		<td><a
-			href="<?php echo $this->url('album', array('action'=>'edit', 'id' => $album->id));?>">Edit</a> <a
-			href="<?php echo $this->url('album', array('action'=>'delete', 'id' => $album->id));?>">Delete</a>
+			href="<?php echo $this->url('car', array('action'=>'edit', 'id' => $car->id));?>">Edit</a> <a
+			href="<?php echo $this->url('car', array('action'=>'delete', 'id' => $car->id));?>">Delete</a>
 		</td>
 	</tr>
 	<?php endforeach; ?>

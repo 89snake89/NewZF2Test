@@ -1,5 +1,8 @@
 <?php
+namespace Car\Model;
+
 use Zend\Db\TableGateway\TableGateway;
+
 class CarTable
 {
 	protected $tableGateway;
