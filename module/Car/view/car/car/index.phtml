@@ -17,8 +17,8 @@ $this->headTitle($title);
 	</tr>
 	<?php foreach ($cars as $car) : ?>
 	<tr>
-		<td><?php echo $this->escapeHtml($car->brand);?></td>
-		<td><?php echo $this->escapeHtml($car->model);?></td>
+		<td><?php echo $this->escapeHtml($car->getBrand());?></td>
+		<td><?php echo $this->escapeHtml($car->getModel());?></td>
 		<td><a
 			href="<?php echo $this->url('car', array('action'=>'edit', 'id' => $car->id));?>">Edit</a> <a
 			href="<?php echo $this->url('car', array('action'=>'delete', 'id' => $car->id));?>">Delete</a>

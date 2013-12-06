@@ -2,8 +2,9 @@
 namespace Car\Controller;
 	
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Crypt\PublicKey\Rsa\PublicKey;
-use Zend\View\Helper\ViewModel;
+use Zend\View\Model\ViewModel;
+use Car\Model\Car;
+
 class CarController extends AbstractActionController
 {
 	
@@ -13,6 +14,7 @@ class CarController extends AbstractActionController
 		return new ViewModel(array(
 				'cars' => $this->getCarTable()->fetchAll(),
 		));
+		
 	}
 	
 	public function addAction(){

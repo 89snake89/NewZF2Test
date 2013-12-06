@@ -2,6 +2,8 @@
 namespace Car;
 use Car\Model\CarTable;
 use Car\Model\Car;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\TableGateway;
 class Module
 {
 	public function getAutoloaderConfig()
@@ -32,7 +34,7 @@ class Module
 						$table = new CarTable($tableGateway);
 						return $table;
 					},
-				'CarTableGateway' => function ($sm) {
+					'CarTableGateway' => function ($sm) {
 							$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
 							$resultSetPrototype = new ResultSet();
 							$resultSetPrototype->setArrayObjectPrototype(new Car());

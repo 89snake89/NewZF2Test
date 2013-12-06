@@ -18,7 +18,7 @@ return array(
 												'id'     => '[0-9]+',
 										),
 										'defaults' => array(
-												'controller' => 'car\Controller\car',
+												'controller' => 'Car\Controller\Car',
 												'action'     => 'index',
 										),
 								),
