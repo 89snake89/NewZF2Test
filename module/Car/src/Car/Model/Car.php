@@ -7,7 +7,7 @@ use Zend\InputFilter\InputFilterInterface;
 
 class Car implements InputFilterAwareInterface
 {
-	private $id;
+	public $id;
 	private $brand;
 	private $model;
 	
@@ -96,5 +96,13 @@ class Car implements InputFilterAwareInterface
 	
 	public function getModel(){
 		return $this->model;
+	}
+	
+	public function setBrand($newBrand){
+		$this->brand = $newBrand;
+	}
+	
+	public function setModel($newModel){
+		$this->model = $newModel;
 	}
 }

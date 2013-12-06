@@ -26,12 +26,12 @@ class CarController extends AbstractActionController
 		
 		if($request->isPost()){
 			$car = new Car();
-			$car->setInputFilter($car->getInputFilter());
+			$carForm->setInputFilter($car->getInputFilter());
 			$carForm->setData($request->getPost());
 			
 			if($carForm->isValid()){
 				$car->exchangeArray($carForm->getData());
-				$this->getCarTable()->saveCar();
+				$this->getCarTable()->saveCar($car);
 				
 				// Redirect to list of albums
 				return $this->redirect()->toRoute('car');
@@ -42,11 +42,68 @@ class CarController extends AbstractActionController
 	}
 	
 	public function editAction(){
+		$id = (int) $this->params()->fromRoute('id', 0);
+		if (!$id) {
+			return $this->redirect()->toRoute('car', array(
+					'action' => 'add'
+			));
+		}
 		
+		// Get the Album with the specified id.  An exception is thrown
+		// if it cannot be found, in which case go to the index page.
+		try {
+			$car = $this->getCarTable()->getCar($id);
+		}
+		catch (\Exception $ex) {
+			return $this->redirect()->toRoute('car', array(
+					'action' => 'index'
+			));
+		}
+		
+		$form  = new CarForm();
+		$form->bind($car);
+		$form->get('submit')->setAttribute('value', 'Edit');
+		
+		$request = $this->getRequest();
+		if ($request->isPost()) {
+			$form->setInputFilter($car->getInputFilter());
+			$form->setData($request->getPost());
+		
+			if ($form->isValid()) {
+				$this->getCarTable()->saveCar($car);
+				// Redirect to list of car
+				return $this->redirect()->toRoute('car');
+			}
+		}
+		
+		return array(
+				'id' => $id,
+				'form' => $form,
+		);
 	}
 	
 	public function deleteAction(){
+		$id = (int) $this->params()->fromRoute('id', 0);
+		if (!$id) {
+			return $this->redirect()->toRoute('car');
+		}
 		
+		$request = $this->getRequest();
+		if ($request->isPost()) {
+			$del = $request->getPost('del', 'No');
+		
+			if ($del == 'Yes') {
+				$id = (int) $request->getPost('id');
+				$this->getCarTable()->deleteCar($id);
+			}
+			// Redirect to list of car
+			return $this->redirect()->toRoute('car');
+		}
+		
+		return array(
+				'id'    => $id,
+				'car' => $this->getCarTable()->getCar($id)
+		);
 	}
 	
 	public function getCarTable(){

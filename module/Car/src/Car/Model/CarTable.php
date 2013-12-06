@@ -16,8 +16,8 @@ class CarTable
 	 * @return Ambigous <\Zend\Db\ResultSet\ResultSet, NULL, \Zend\Db\ResultSet\ResultSetInterface>
 	 */
 	public function fetchAll(){
-		$result = $this->tableGateway->select();
-		return $result;
+		$resultSet = $this->tableGateway->select();
+		return $resultSet;
 	}
 	
 	/**
@@ -41,11 +41,11 @@ class CarTable
 	public function saveCar(Car $car){
 		$data = array(
 				'model' => $car->getModel(),
-				'brand' => $ar->getBrand()
+				'brand' => $car->getBrand()
 		);
 		
 		$carId = (int) $car->id;
-		if ($id == 0) {
+		if ($carId == 0) {
 			$this->tableGateway->insert($data);
 		} else {
 			if ($this->getCar($carId)) {
