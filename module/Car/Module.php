@@ -23,6 +23,21 @@ class Module
 
 	public function getServiceConfig()
 	{
+		return array(
+				'factories' => array(
+					'Car\Model\CarTable' => function ($sm) {
+						$tableGateway = $sm->get('CarTableGateway');
+						$table = new \CarTable($tableGateway);
+						return $table;
+					},
+				'CarTableGateway' => function ($sm) {
+							$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+							$resultSetPrototype = new ResultSet();
+							$resultSetPrototype->setArrayObjectPrototype(new \Car());
+							return new TableGateway('cars', $dbAdapter, null, $resultSetPrototype); //Set table name
+						},
+				),
+		);
 	}
 
 }
