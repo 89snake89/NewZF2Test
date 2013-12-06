@@ -1,0 +1,8 @@
+{
+    "name": "AlbumModule",
+    "description": "Album module Zend Framework example",
+    "license": "BSD-3-Clause",
+    "autoload": {
+     	"psr-0": { "Album": "module/Album/src/" }
+ 	}
+}
