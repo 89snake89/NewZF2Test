@@ -11,6 +11,7 @@ class Car implements InputFilterAwareInterface
 	private $brand;
 	private $model;
 	
+	protected $inputFilter;
 	public function exchangeArray($data)
 	{
 		$this->id     = (!empty($data['id'])) ? $data['id'] : null;

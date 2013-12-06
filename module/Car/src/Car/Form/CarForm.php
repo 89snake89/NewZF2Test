@@ -26,5 +26,14 @@ class CarForm extends Form
 						'label' => 'Model',
 				),
 		));
+		//Submit button
+		$this->add(array(
+				'name' => 'submit',
+				'type' => 'Submit',
+				'attributes' => array(
+						'value' => 'Go',
+						'id' => 'submitbutton',
+				),
+		));
 	}
 }

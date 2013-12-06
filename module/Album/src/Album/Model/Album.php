@@ -8,6 +8,8 @@ class Album implements InputFilterAwareInterface
 	public $id;
 	public $artist;
 	public $title;
+	
+	protected $inputFilter;
 
 	public function exchangeArray($data)
 	{

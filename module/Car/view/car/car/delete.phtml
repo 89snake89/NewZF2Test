@@ -1,7 +1,7 @@
 <?php
 // module/Album/view/album/album/delete.phtml:
 
-$title = 'Delete album';
+$title = 'Delete car';
 $this->headTitle($title);
 ?>
 <h1>
@@ -10,20 +10,20 @@ $this->headTitle($title);
 
 <p>
 	Are you sure that you want to delete '
-	<?php echo $this->escapeHtml($album->title); ?>
+	<?php echo $this->escapeHtml($car->title); ?>
 	' by '
-	<?php echo $this->escapeHtml($album->artist); ?>
+	<?php echo $this->escapeHtml($car->artist); ?>
 	'?
 </p>
 <?php
-$url = $this->url('album', array(
+$url = $this->url('car', array(
      'action' => 'delete',
      'id'     => $this->id,
  ));
  ?>
 <form action="<?php echo $url; ?>" method="post">
 	<div>
-		<input type="hidden" name="id" value="<?php echo (int) $album->id; ?>" />
+		<input type="hidden" name="id" value="<?php echo (int) $car->id; ?>" />
 		<input type="submit" name="del" value="Yes" /> <input type="submit"
 			name="del" value="No" />
 	</div>
