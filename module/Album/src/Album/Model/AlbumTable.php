@@ -5,6 +5,7 @@ use Zend\Db\TableGateway\TableGateway;
 use Zend\Console\Prompt\Select;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Paginator\Adapter\DbSelect;
+use Zend\Paginator\Paginator;
 
 class AlbumTable
 {
@@ -19,7 +20,7 @@ class AlbumTable
     {
         if ($paginated) {
             // create a new Select object for the table album
-            $select = new Select('album');
+            $select = new \Zend\Db\Sql\Select('album');
             // create a new result set based on the Album entity
             $resultSetPrototype = new ResultSet();
             $resultSetPrototype->setArrayObjectPrototype(new Album());
