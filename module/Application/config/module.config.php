@@ -15,7 +15,7 @@ return array(
                 'options' => array(
                     'route'    => '/',
                     'defaults' => array(
-                        'controller' => 'Album\Controller\Album',
+                        'controller' => 'Application\Controller\Index',
                         'action'     => 'index',
                     ),
                 ),
@@ -57,8 +57,11 @@ return array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
             'Zend\Log\LoggerAbstractServiceFactory',
         ),
+        'factories' => array(
+        		'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
+        		'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory', // <-- add this
+        ),
         'aliases' => array(
-            'translator' => 'MvcTranslator',
         ),
     ),
     'translator' => array(
@@ -98,5 +101,56 @@ return array(
             'routes' => array(
             ),
         ),
+    ),
+    //Navigation
+    'navigation' => array(
+    	'default' => array(
+		    array(
+			    'label' => 'Home',
+			    'route' => 'home',
+		    ),
+		    array(
+			    'label' => 'Album',
+			    'route' => 'album',
+			    'pages' => array(
+				    array(
+					    'label' => 'Add',
+					    'route' => 'album',
+					    'action' => 'add',
+				    ),
+				    array(
+					    'label' => 'Edit',
+					    'route' => 'album',
+					    'action' => 'edit',
+				    ),
+				    array(
+					    'label' => 'Delete',
+					    'route' => 'album',
+					    'action' => 'delete',
+				    ),
+			    ),
+		    ),
+		    array(
+			    'label' => 'Car',
+			    'route' => 'car',
+			    'pages' => array(
+				    array(
+					    'label' => 'Add',
+					    'route' => 'car',
+					    'action' => 'add',
+				    ),
+				    array(
+					    'label' => 'Edit',
+					    'route' => 'car',
+					    'action' => 'edit',
+				    ),
+				    array(
+					    'label' => 'Delete',
+					    'route' => 'car',
+					    'action' => 'delete',
+				    ),
+			    ),
+		    ),
+	    ),
     ),
 );

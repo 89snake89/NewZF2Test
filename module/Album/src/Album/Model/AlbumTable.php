@@ -2,6 +2,9 @@
 namespace Album\Model;
 
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Console\Prompt\Select;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Paginator\Adapter\DbSelect;
 
 class AlbumTable
 {
@@ -11,12 +14,29 @@ class AlbumTable
 	{
 		$this->tableGateway = $tableGateway;
 	}
-
-	public function fetchAll()
-	{
-		$resultSet = $this->tableGateway->select();
-		return $resultSet;
-	}
+	
+	public function fetchAll($paginated=false)
+    {
+        if ($paginated) {
+            // create a new Select object for the table album
+            $select = new Select('album');
+            // create a new result set based on the Album entity
+            $resultSetPrototype = new ResultSet();
+            $resultSetPrototype->setArrayObjectPrototype(new Album());
+            // create a new pagination adapter object
+            $paginatorAdapter = new DbSelect(
+                $select,
+                // the adapter to run it against
+                $this->tableGateway->getAdapter(),
+                // the result set to hydrate
+                $resultSetPrototype
+            );
+            $paginator = new Paginator($paginatorAdapter);
+            return $paginator;
+        }
+        $resultSet = $this->tableGateway->select();
+        return $resultSet;
+    }
 
 	public function getAlbum($id)
 	{
