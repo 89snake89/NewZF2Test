@@ -13,22 +13,6 @@ $this->headTitle($title);
 </p>
 
 <table class="table">
-	<tr>
-		<th>Title</th>
-		<th>Artist</th>
-		<th>&nbsp;</th>
-	</tr>
-	<?php foreach ($this->paginator as $album) : ?>
-	<tr>
-		<td><?php echo $this->escapeHtml($album->title);?></td>
-		<td><?php echo $this->escapeHtml($album->artist);?></td>
-		<td><a
-			href="<?php echo $this->url('album', array('action'=>'edit', 'id' => $album->id));?>">Edit</a> <a
-			href="<?php echo $this->url('album', array('action'=>'delete', 'id' => $album->id));?>">Delete</a>
-		</td>
-	</tr>
-	<?php endforeach; ?>
-	
 	<?php
 	// add at the end of the file after the table
 	echo $this->paginationControl(
@@ -43,4 +27,21 @@ $this->headTitle($title);
 	        'route' => 'album'
 	    )
 	); ?>
+	<tr>
+		<th>Title</th>
+		<th>Artist</th>
+		<th>Action</th>
+	</tr>
+	<?php foreach ($this->paginator as $album) : ?>
+	<tr>
+		<td><?php echo $this->escapeHtml($album->title);?></td>
+		<td><?php echo $this->escapeHtml($album->artist);?></td>
+		<td><a
+			href="<?php echo $this->url('album', array('action'=>'edit', 'id' => $album->id));?>">Edit</a> <a
+			href="<?php echo $this->url('album', array('action'=>'delete', 'id' => $album->id));?>">Delete</a>
+		</td>
+	</tr>
+	<?php endforeach; ?>
+	
+	
 </table>

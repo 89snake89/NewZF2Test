@@ -1,48 +1,48 @@
 <?php if ($this->pageCount): ?>
-    <div class="pagination pagination-centered">
-        <ul>
+    <div class="pagination pagination-center">
+        <div>
             <!-- Previous page link -->
             <?php if (isset($this->previous)): ?>
-                <li>
+                <div class="pagination-block">
                     <a href="<?php echo $this->url($this->route); ?>?page=<?php echo $this->previous; ?>">
                         <<
                     </a>
-                </li>
+                </div>
             <?php else: ?>
-                <li class="disabled">
+                <div class="pagination-block disabled">
                     <a href="#">
                         <<
                     </a>
-                </li>
+                </div>
             <?php endif; ?>
-             <!-- Numbered page links -->
+             <!-- Numbered page divnks -->
             <?php foreach ($this->pagesInRange as $page): ?>
                 <?php if ($page != $this->current): ?>
-                    <li>
+                    <div class="pagination-block">
                         <a href="<?php echo $this->url($this->route);?>?page=<?php echo $page; ?>">
                             <?php echo $page; ?>
                         </a>
-                    </li>
+                    </div>
                 <?php else: ?>
-                    <li class="active">
+                    <div class="pagination-block active">
                         <a href="#"><?php echo $page; ?></a>
-                    </li>
+                    </div>
                 <?php endif; ?>
             <?php endforeach; ?>
-             <!-- Next page link -->
+             <!-- Next page divnk -->
             <?php if (isset($this->next)): ?>
-                <li>
+                <div class="pagination-block">
                     <a href="<?php echo $this->url($this->route); ?>?page=<?php echo $this->next; ?>">
                         >>
                     </a>
-                </li>
+                </div>
             <?php else: ?>
-                <li class="disabled">
+                <div class="pagination-block disabled">
                     <a href="#">
                         >>
                     </a>
-                </li>
+                </div>
             <?php endif; ?>
-        </ul>
+        </div>
     </div>
 <?php endif; ?>

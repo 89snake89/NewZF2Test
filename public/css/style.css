@@ -35,3 +35,14 @@ div.container a.brand {
     margin-left: 0;
     padding: 8px 20px 12px 40px;
 }
+.pagination .active{
+	font-weight: bold;
+}
+.pagination .pagination-block {
+	    border: 1px solid #CCCCCC;
+	    border-radius: 4px;
+	    float: left;
+	    margin: 2px;
+	    padding: 4px;
+	}
+}
