@@ -2,6 +2,9 @@
 namespace Car\Model;
 
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Paginator\Adapter\DbSelect;
+use Zend\Paginator\Paginator;
 
 class CarTable
 {
@@ -12,13 +15,32 @@ class CarTable
 	}
 	
 	/**
-	 * Return all cars
-	 * @return Ambigous <\Zend\Db\ResultSet\ResultSet, NULL, \Zend\Db\ResultSet\ResultSetInterface>
+	 * Return car with pagination
+	 * @param boolean $paginated (default FALSE)
+	 * @return \Car\Model\Paginator|unknown
 	 */
-	public function fetchAll(){
-		$resultSet = $this->tableGateway->select();
-		return $resultSet;
-	}
+	public function fetchAll($paginated = false)
+    {
+        if ($paginated) {
+            // create a new Select object for the table cars
+            $select = new \Zend\Db\Sql\Select('cars');
+            // create a new result set based on the Car entity
+            $resultSetPrototype = new ResultSet();
+            $resultSetPrototype->setArrayObjectPrototype(new Car());
+            // create a new pagination adapter object
+            $paginatorAdapter = new DbSelect(
+                $select,
+                // the adapter to run it against
+                $this->tableGateway->getAdapter(),
+                // the result set to hydrate
+                $resultSetPrototype
+            );
+            $paginator = new Paginator($paginatorAdapter);
+            return $paginator;
+        }
+        $resultSet = $this->tableGateway->select();
+        return $resultSet;
+    }
 	
 	/**
 	 * 

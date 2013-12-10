@@ -10,12 +10,27 @@ $this->headTitle($title);
 </p>
 
 <table class="table">
+
+	<?php
+	// add at the end of the file after the table
+	echo $this->paginationControl(
+	    // the paginator object
+	    $this->paginator,
+	    // the scrolling style
+	    'sliding',
+	    // the partial to use to render the control
+	    array('partial/paginator.phtml', 'Car'),
+	    // the route to link to when a user clicks a control link
+	    array(
+	        'route' => 'car'
+	    )
+	); ?>
 	<tr>
 		<th>Brand</th>
 		<th>Model</th>
 		<th>&nbsp;</th>
 	</tr>
-	<?php foreach ($cars as $car) : ?>
+	<?php foreach ($this->paginator as $car) : ?>
 	<tr>
 		<td><?php echo $this->escapeHtml($car->getBrand());?></td>
 		<td><?php echo $this->escapeHtml($car->getModel());?></td>

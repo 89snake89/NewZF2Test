@@ -12,8 +12,14 @@ class CarController extends AbstractActionController
 	protected $carTable;
 	
 	public function indexAction(){
+		
+		$paginator = $this->getCarTable()->fetchAll(true);
+		// set the current page to what has been passed in query string, or to 1 if none set
+		$paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
+		// set the number of items per page to 8
+		$paginator->setItemCountPerPage(8);
 		return new ViewModel(array(
-				'cars' => $this->getCarTable()->fetchAll(),
+				'paginator' => $paginator,
 		));
 		
 	}
