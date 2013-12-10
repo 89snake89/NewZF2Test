@@ -11,3 +11,4 @@ vendor/bin
 vendor/doctrine
 vendor/symfony
 vendor/ZF2
+vendor/beberlei
