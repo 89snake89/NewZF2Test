@@ -34,6 +34,36 @@ class Album
      * @ORM\Column(name="title", type="string", length=100, nullable=false)
      */
     private $title;
-
-
+    
+	/**
+	 * Get album method
+	 * @return string
+	 */
+	public function getArtist(){
+		return $this->artist;
+	}
+	
+	/**
+	 * Get title method
+	 * @return string
+	 */
+	public function getTitle(){
+		return $this->title;
+	}
+	
+	/**
+	 * Set artist method
+	 * @param unknown $newArtist
+	 */
+	public function setArtist($newArtist){
+		$this->artist = $newArtist;
+	}
+	
+	/**
+	 * Set title method
+	 * @param unknown $newTitle
+	 */
+	public function setTitle($newTitle){
+		$this->title = $newTitle;
+	}
 }
