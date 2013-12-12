@@ -4,6 +4,7 @@ use Album\Model\AlbumTable;
 use Zend\Db\ResultSet\ResultSet;
 use Album\Model\Album;
 use Zend\Db\TableGateway\TableGateway;
+
 return array(
 		'factories' => array(
 				'doctrine.authenticationadapter.orm_another'  => new \DoctrineModule\Service\Authentication\AdapterFactory('orm_another'),

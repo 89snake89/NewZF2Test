@@ -35,6 +35,21 @@ class Album
      */
     private $title;
     
+    /**
+     * Get Id method
+     * @return number
+     */
+    public function getId(){
+    	return $this->id;
+    }
+    
+    /**
+     * Setter method for Id
+     * @param int $newId
+     */
+    public function setId($newId){
+    	$this->id = $newId;
+    }
 	/**
 	 * Get album method
 	 * @return string

@@ -12,8 +12,11 @@ class AlbumController extends AbstractActionController
 	
 	public function indexAction()
 	{
+		$em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_another');
+		
+		$s= $em->getRepository("Album\Entity\Album")->findAll();
 		return new ViewModel(array(
-				'albums' => $this->getAlbumTable()->fetchAll(),
+				'albums' => $s,
 		));
 	}
 
