@@ -27,15 +27,14 @@ class AlbumController extends AbstractActionController
 		
 		$request = $this->getRequest();
 		if ($request->isPost()) {
-			$album = new Album();
-			$form->setInputFilter($album->getInputFilter());
+			$em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_another');
+			$album = new \Album\Entity\Album();
 			$form->setData($request->getPost());
 		
 			if ($form->isValid()) {
 				$album->exchangeArray($form->getData());
-				$this->getAlbumTable()->saveAlbum($album);
-		
-				// Redirect to list of albums
+				$em->persist($album);
+				$em->flush();
 				return $this->redirect()->toRoute('album');
 			}
 		}
