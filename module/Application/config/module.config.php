@@ -16,7 +16,7 @@ return array(
                     'route'    => '/',
                     'defaults' => array(
                         'controller' => 'Login\Controller\Login',
-                        'action'     => 'index',
+                        'action'     => 'login',
                     ),
                 ),
             ),
