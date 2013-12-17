@@ -24,7 +24,7 @@ class AutenticationAdapter implements AdapterInterface
 	
 	public function authenticate(){
 		// Configure the instance with constructor parameters...
-	    $this->authAdapter = new AuthAdapter($this->dbAdapter, 'user', 'Mail', 'Psw');
+	    $this->authAdapter = new AuthAdapter($this->dbAdapter, 'user', 'Psw');
 	    
 	    $this->authAdapter->setIdentity($this->username)
                                     ->setCredential($this->password)

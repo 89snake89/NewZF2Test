@@ -18,24 +18,27 @@ class LoginController extends AbstractActionController
 
 	public function loginAction(){
 		$auth = new AuthenticationService();
-
 		$form = new LoginForm();
 		$request = $this->getRequest();
 		
 		if($request->isPost()){
 			$form->setData($request->getPost());
+			
 			if($form->isValid()){
+				
 				$formData = $form->getData();
-
+				
 				//Verifica delle credenziali dell'utente
 				$authAdapter = new AutenticationAdapter(
 						$formData["user"],
 						$formData["password"]
 				);
-				$authAdapter->setDbAdapter(
-						$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter'));
+				
+				$authAdapter->setDbAdapter($this->getServiceLocator()->get('Zend\Db\Adapter\Adapter'));
+				
 				// Attempt authentication, saving the result
 				$result = $auth->authenticate($authAdapter);
+				
 				if (!$result->isValid()) {
 					// Authentication failed; print the reasons why
 					foreach ($result->getMessages() as $message) {
