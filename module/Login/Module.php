@@ -7,6 +7,8 @@ use Zend\Db\TableGateway\TableGateway;
 use Login\Model\Login;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\Authentication\AuthenticationService;
+use Zend\Authentication\Adapter\DbTable as DbTableAuthAdapter;
+use Login\Model\MyAuthStorage;
 
 class Module implements AutoloaderProviderInterface{
 	public function getAutoloaderConfig()
@@ -56,7 +58,7 @@ class Module implements AutoloaderProviderInterface{
 							 
 							$authService = new AuthenticationService();
 							$authService->setAdapter($dbTableAuthAdapter);
-							$authService->setStorage($sm->get('SanAuth\Model\MyAuthStorage'));
+							$authService->setStorage($sm->get('Login\Model\MyAuthStorage'));
 						
 							return $authService;
 						},

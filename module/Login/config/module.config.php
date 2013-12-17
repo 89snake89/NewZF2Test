@@ -1,33 +1,73 @@
 <?php
 return array(
-		//Definition of module's controllers
 		'controllers' => array(
 				'invokables' => array(
-						'Login\Controller\Login' => 'Login\Controller\LoginController',
+						'Login\Controller\Auth' => 'Login\Controller\AuthController',
+						'Login\Controller\Success' => 'Login\Controller\SuccessController',
 				),
 		),
-		// Definition of Module's routes
 		'router' => array(
 				'routes' => array(
+						 
 						'login' => array(
-								'type'    => 'segment',
+								'type'    => 'Literal',
 								'options' => array(
-										'route'    => '/login[/][:action]',
-										'constraints' => array(
-												'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-										),
+										'route'    => '/login',
 										'defaults' => array(
-												'controller' => 'Login\Controller\Login',
-												'action'     => 'index',
+												'__NAMESPACE__' => 'Login\Controller',
+												'controller'    => 'Auth',
+												'action'        => 'login',
+										),
+								),
+								'may_terminate' => true,
+								'child_routes' => array(
+										'process' => array(
+												'type'    => 'Segment',
+												'options' => array(
+														'route'    => '/[:action]',
+														'constraints' => array(
+																'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+																'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+														),
+														'defaults' => array(
+														),
+												),
 										),
 								),
 						),
+						 
+						'success' => array(
+								'type'    => 'Literal',
+								'options' => array(
+										'route'    => '/success',
+										'defaults' => array(
+												'__NAMESPACE__' => 'Login\Controller',
+												'controller'    => 'Success',
+												'action'        => 'index',
+										),
+								),
+								'may_terminate' => true,
+								'child_routes' => array(
+										'default' => array(
+												'type'    => 'Segment',
+												'options' => array(
+														'route'    => '/[:action]',
+														'constraints' => array(
+																'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+																'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+														),
+														'defaults' => array(
+														),
+												),
+										),
+								),
+						),
+						 
 				),
 		),
-		//Definition view managers
 		'view_manager' => array(
 				'template_path_stack' => array(
-						'login' => __DIR__ . '/../view',
+						'Login' => __DIR__ . '/../view',
 				),
 		),
 );
