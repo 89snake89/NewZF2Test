@@ -5,6 +5,7 @@ use Login\Model\User;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Form\Annotation\AnnotationBuilder;
 use Zend\View\Model\ViewModel;
+use Login\Form\LoginForm;
 
 class AuthController extends AbstractActionController
 {
@@ -35,9 +36,7 @@ class AuthController extends AbstractActionController
 	public function getForm()
 	{
 		if (! $this->form) {
-			$user       = new User();
-			$builder    = new AnnotationBuilder();
-			$this->form = $builder->createForm($user);
+			$this->form = new LoginForm();//$builder->createForm($user);
 		}
 		 
 		return $this->form;
@@ -50,7 +49,7 @@ class AuthController extends AbstractActionController
 			return $this->redirect()->toRoute('success');
 		}
 		 
-		$form       = $this->getForm();
+		$form = $this->getForm();
 		 
 		return array(
 				'form'      => $form,

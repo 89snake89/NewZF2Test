@@ -22,6 +22,15 @@ class LoginForm extends Form
 				),
 		));
 		
+		$this->add(array(
+				'name' => 'rememberme',
+				'type' => 'checkbox',
+				'value' => 1,
+				'options' => array(
+						'label' => 'Remember Me',
+				),
+		));
+		
 		//Submit button
 		$this->add(array(
 				'name' => 'submit',
