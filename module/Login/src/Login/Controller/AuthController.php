@@ -16,8 +16,7 @@ class AuthController extends AbstractActionController
 	public function getAuthService()
 	{
 		if (! $this->authservice) {
-			$this->authservice = $this->getServiceLocator()
-			->get('AuthService');
+			$this->authservice = $this->getServiceLocator()->get('AuthService');
 		}
 		 
 		return $this->authservice;
@@ -36,7 +35,7 @@ class AuthController extends AbstractActionController
 	public function getForm()
 	{
 		if (! $this->form) {
-			$this->form = new LoginForm();//$builder->createForm($user);
+			$this->form = new LoginForm();
 		}
 		 
 		return $this->form;
@@ -68,9 +67,10 @@ class AuthController extends AbstractActionController
 			if ($form->isValid()){
 				//check authentication...
 				$this->getAuthService()->getAdapter()
-				->setIdentity($request->getPost('username'))
+				->setIdentity($request->getPost('user'))
 				->setCredential($request->getPost('password'));
-
+				
+				$postData = $request->getPost();
 				$result = $this->getAuthService()->authenticate();
 				foreach($result->getMessages() as $message)
 				{

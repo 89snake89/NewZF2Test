@@ -7,6 +7,7 @@ class Login implements InputFilterAwareInterfacet
 	private $id;
 	private $user;
 	private $password;
+	private $rememberme;
 	
 	protected $inputFilter;
 	

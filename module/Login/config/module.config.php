@@ -2,7 +2,6 @@
 return array(
 		'controllers' => array(
 				'invokables' => array(
-						'Login\Controller\Login' => 'Login\Controller\LoginController',
 						'Login\Controller\Auth' => 'Login\Controller\AuthController',
 						'Login\Controller\Success' => 'Login\Controller\SuccessController',
 				),
