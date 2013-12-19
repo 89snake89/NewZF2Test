@@ -45,7 +45,7 @@ class AuthController extends AbstractActionController
 	{
 		//if already login, redirect to success page
 		if ($this->getAuthService()->hasIdentity()){
-			return $this->redirect()->toRoute('success');
+			return $this->redirect()->toRoute('/success');
 		}
 		 
 		$form = $this->getForm();
@@ -70,7 +70,6 @@ class AuthController extends AbstractActionController
 				->setIdentity($request->getPost('user'))
 				->setCredential($request->getPost('password'));
 				
-				$postData = $request->getPost();
 				$result = $this->getAuthService()->authenticate();
 				foreach($result->getMessages() as $message)
 				{
