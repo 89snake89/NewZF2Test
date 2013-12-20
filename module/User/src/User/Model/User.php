@@ -15,8 +15,8 @@ class User
 	public function exchangeArray($data)
 	{
 		$this->id     = (!empty($data['id'])) ? $data['id'] : null;
-		$this->username = (!empty($data['artist'])) ? $data['username'] : null;
-		$this->password  = (!empty($data['title'])) ? $data['password'] : null;
+		$this->username = (!empty($data['username'])) ? $data['username'] : null;
+		$this->password  = (!empty($data['password'])) ? $data['password'] : null;
 	}
 	
 	/**
