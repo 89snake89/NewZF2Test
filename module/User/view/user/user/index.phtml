@@ -1,9 +1,9 @@
 <?php
 $form = $this->form;
 $form->setAttribute('action', $this->url(
-    'user/process',
+    'login/process',
     array(
-        'action'     => 'register',
+        'action'     => 'authenticate',
     )
 ));
 $form->prepare();

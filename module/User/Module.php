@@ -1,6 +1,8 @@
 <?php 
 namespace User;
 
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+
 class Module implements AutoloaderProviderInterface{
 	public function getAutoloaderConfig()
 	{
