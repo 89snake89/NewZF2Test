@@ -34,24 +34,10 @@ class Module implements AutoloaderProviderInterface{
 	{
 		return array(
 				'factories' => array(
-						/*'Login\Model\LoginTable' => function ($sm) {
-							$tableGateway = $sm->get('LoginTableGateway');
-							$table = new LoginTable($tableGateway);
-							return $table;
-						},
-						'LoginTableGateway' => function ($sm) {
-							$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-							$resultSetPrototype = new ResultSet();
-							$resultSetPrototype->setArrayObjectPrototype(new Login());
-							return new TableGateway('users', $dbAdapter, null, $resultSetPrototype); //Set table name
-						},*/
 						'Login\Model\MyAuthStorage' => function($sm){
 							return new MyAuthStorage('Login');
 						},
 						'AuthService' => function($sm) {
-							//My assumption, you've alredy set dbAdapter
-							//and has users table with columns : username and password
-							//that password hashed with md5
 							$dbAdapter           = $sm->get('Zend\Db\Adapter\Adapter');
 							$dbTableAuthAdapter  = new DbTableAuthAdapter($dbAdapter,
 									'users','username','password', 'SHA1(?)');

@@ -6,7 +6,8 @@ return array(
         'Application',
     	'Album',
     	'Car',
-    	'Login'
+    	'Login',
+    	'User'
     ),
 
     // These are various options for the listeners attached to the ModuleManager
