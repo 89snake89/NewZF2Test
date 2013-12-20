@@ -45,7 +45,7 @@ class AuthController extends AbstractActionController
 	{
 		//if already login, redirect to success page
 		if ($this->getAuthService()->hasIdentity()){
-			return $this->redirect()->toRoute('/success');
+			return $this->redirect()->toRoute('success');
 		}
 		 
 		$form = $this->getForm();
@@ -60,25 +60,29 @@ class AuthController extends AbstractActionController
 	{
 		$form       = $this->getForm();
 		$redirect = 'login';
-		 
+		
 		$request = $this->getRequest();
 		if ($request->isPost()){
+			
 			$form->setData($request->getPost());
 			if ($form->isValid()){
 				//check authentication...
+				
 				$this->getAuthService()->getAdapter()
 				->setIdentity($request->getPost('user'))
 				->setCredential($request->getPost('password'));
 				
 				$result = $this->getAuthService()->authenticate();
+				
 				foreach($result->getMessages() as $message)
 				{
 					//save message temporary into flashmessenger
 					$this->flashmessenger()->addMessage($message);
 				}
-				 
+
 				if ($result->isValid()) {
 					$redirect = 'success';
+					
 					//check if it has rememberMe :
 					if ($request->getPost('rememberme') == 1 ) {
 						$this->getSessionStorage()
