@@ -6,6 +6,8 @@ use Zend\Form\Form;
 class RegistrationForm extends Form
 {
 	public function __construct(){
+		// we want to ignore the name passed
+		parent::__construct('registration');
 		$this->add(array(
 				'name' => 'user',
 				'type' => 'text',
