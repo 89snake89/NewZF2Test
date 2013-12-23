@@ -3,7 +3,7 @@ namespace User\Model;
 
 class User
 {
-	private $id;
+	public $id;
 	private $username;
 	private $password;
 	
@@ -16,7 +16,7 @@ class User
 	{
 		$this->id     = (!empty($data['id'])) ? $data['id'] : null;
 		$this->username = (!empty($data['username'])) ? $data['username'] : null;
-		$this->password  = (!empty($data['password'])) ? $data['password'] : null;
+		$this->password  = (!empty($data['password'])) ? sha1($data['password']) : null;
 	}
 	
 	/**

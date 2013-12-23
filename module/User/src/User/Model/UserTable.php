@@ -12,6 +12,7 @@ class UserTable
 	
 	public function saveUser(User $user){
 		$data = array(
+				'id' => null,
 				'username' => $user->getUsername(),
 				'password' => $user->getPassword()
 		);

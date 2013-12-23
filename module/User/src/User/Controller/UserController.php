@@ -28,16 +28,20 @@ class UserController extends AbstractActionController
 		$request = $this->getRequest();
 		if ($request->isPost()) {
 			$postData = $request->getPost();
-			\Zend\Debug\Debug::dump($postData);
 			$newUser = new User();
 			$postData = array('username' => $postData->username, 'password' => $postData->password);
 			$newUser->exchangeArray($postData);
-			$this->getUserTable()->insert($newUser);
+			$this->getUserTable()->saveUser($newUser);
+			return new ViewModel();
 		}
 	}
 	
+	/**
+	 * Get UserTable instance
+	 * @return UserTable instance <object, multitype:>
+	 */
 	private function getUserTable(){
-		if($this->userTable){
+		if(!$this->userTable){
 			$sm = $this->getServiceLocator();
 			$this->userTable = $sm->get('User\Model\UserTable');
 		}

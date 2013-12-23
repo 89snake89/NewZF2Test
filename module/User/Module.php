@@ -1,13 +1,13 @@
 <?php 
 namespace User;
 
-use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use User\Model\User;
 use Zend\Db\ResultSet\ResultSet;
 use User\Model\UserTable;
 use Zend\Db\TableGateway\TableGateway;
 
-class Module implements AutoloaderProviderInterface{
+class Module
+{
 	public function getAutoloaderConfig()
 	{
 		return array(
@@ -40,7 +40,7 @@ class Module implements AutoloaderProviderInterface{
 							$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
 							$resultSetPrototype = new ResultSet();
 							$resultSetPrototype->setArrayObjectPrototype(new User());
-							return new TableGateway('user', $dbAdapter, null, $resultSetPrototype);
+							return new TableGateway('users', $dbAdapter, null, $resultSetPrototype);
 						},
 				),
 		);

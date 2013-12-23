@@ -9,7 +9,7 @@ class RegistrationForm extends Form
 		// we want to ignore the name passed
 		parent::__construct('registration');
 		$this->add(array(
-				'name' => 'user',
+				'name' => 'username',
 				'type' => 'text',
 				'options' => array(
 						'label' => 'Username',
