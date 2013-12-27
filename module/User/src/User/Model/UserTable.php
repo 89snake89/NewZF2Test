@@ -14,7 +14,10 @@ class UserTable
 		$data = array(
 				'id' => null,
 				'username' => $user->getUsername(),
-				'password' => $user->getPassword()
+				'password' => $user->getPassword(),
+				'name' => $user->getName(),
+				'surname' => $user->getSurname(),
+				'gender' => $user->getGender()
 		);
 		
 		$this->tableGateway->insert($data);

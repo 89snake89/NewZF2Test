@@ -29,7 +29,7 @@ class UserController extends AbstractActionController
 		if ($request->isPost()) {
 			$postData = $request->getPost();
 			$newUser = new User();
-			$postData = array('username' => $postData->username, 'password' => $postData->password);
+			$postData = array('username' => $postData->username, 'password' => $postData->password, 'name' => $postData->name, 'surname' => $postData->surname, 'gender' => $postData->gender);
 			$newUser->exchangeArray($postData);
 			$this->getUserTable()->saveUser($newUser);
 			return new ViewModel();
