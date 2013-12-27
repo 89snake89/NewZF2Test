@@ -8,7 +8,6 @@ return array(
 		),
 		'router' => array(
 				'routes' => array(
-						 
 						'login' => array(
 								'type'    => 'Literal',
 								'options' => array(
