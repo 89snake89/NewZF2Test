@@ -1,5 +1,8 @@
 Login Success.
 <h2>Ciao a tutti!!</h2>
 <br />
+<div>
+	Ciao <?php echo $this->name;?> siamo felici di rivederti nel nostro sito.
+</div>
  
 <a href="<?php echo $this->url('login/process', array('action'=>'logout')); ?>">Logout</a>

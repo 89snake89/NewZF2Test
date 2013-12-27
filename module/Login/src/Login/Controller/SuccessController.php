@@ -8,6 +8,9 @@ class SuccessController extends AbstractActionController
 {
 	public function indexAction()
 	{
-		return new ViewModel();
+		$name = 'XXXXXXXX';
+		return new ViewModel(array(
+				'name' => $name,
+		));
 	}
 }
