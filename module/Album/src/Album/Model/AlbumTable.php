@@ -6,6 +6,7 @@ use Zend\Console\Prompt\Select;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Paginator\Adapter\DbSelect;
 use Zend\Paginator\Paginator;
+use Album\Form\SearchForm;
 
 class AlbumTable
 {
@@ -38,7 +39,26 @@ class AlbumTable
         $resultSet = $this->tableGateway->select();
         return $resultSet;
     }
-
+	
+    public function searchAlbum($searchKey){
+    	// create a new Select object for the table album
+    	$select = new \Zend\Db\Sql\Select('album');
+    	$select->where('title LIKE \'%'.$searchKey.'%\'');
+    	// create a new result set based on the Album entity
+    	$resultSetPrototype = new ResultSet();
+    	$resultSetPrototype->setArrayObjectPrototype(new Album());
+    	// create a new pagination adapter object
+    	$paginatorAdapter = new DbSelect(
+    			$select,
+    			// the adapter to run it against
+    			$this->tableGateway->getAdapter(),
+    			// the result set to hydrate
+    			$resultSetPrototype
+    	);
+    	$paginator = new Paginator($paginatorAdapter);
+    	return $paginator;
+    }
+    
 	public function getAlbum($id)
 	{
 		$id  = (int) $id;

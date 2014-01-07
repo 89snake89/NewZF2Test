@@ -5,6 +5,8 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Album\Model\Album;
 use Album\Form\AlbumForm;
+use Album\Form\SearchForm;
+use Doctrine\DBAL\Schema\View;
 
 class AlbumController extends AbstractActionController
 {
@@ -45,7 +47,22 @@ class AlbumController extends AbstractActionController
 		return array('form' => $form);
 		
 	}
-
+	
+	public function searchAction(){
+		//Ricerca di album
+		$form = new SearchForm();
+		$form->get('submit')->setValue('Search');
+		
+		$request = $this->getRequest();
+		if($request->isPost()){
+			$postData = $request->getPost();
+			$paginator = $this->getAlbumTable()->searchAlbum($postData->title);
+			return new ViewModel(array('paginator' => $paginator));
+		}
+		
+		return new ViewModel(array('form' => $form));
+	}
+	
 	public function editAction()
 	{
 		$id = (int) $this->params()->fromRoute('id', 0);

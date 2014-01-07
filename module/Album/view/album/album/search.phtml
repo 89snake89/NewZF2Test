@@ -1,19 +1,4 @@
-<?php
-// module/Album/view/album/album/index.phtml:
-$title = 'My albums';
-$this->headTitle($title);
-?>
-<h1>
-	<?php echo $this->escapeHtml($title); ?>
-</h1>
-
-<div>
-	<ul>
-		<li><a href="<?php echo $this->url('album', array('action'=>'add'));?>">Add new album</a></li>
-		<li><a href="<?php echo $this->url('album', array('action'=>'search'));?>">Search album</a></li>
-	</ul>
-</div>
-
+<?php if($this->paginator){ ?>
 <table id="album-table" class="table">
 	<?php
 	// add at the end of the file after the table
@@ -44,6 +29,21 @@ $this->headTitle($title);
 		</td>
 	</tr>
 	<?php endforeach; ?>
-	
-	
 </table>
+<?php }else{?>
+<?php 
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+		'album',
+		array(
+				'action' => 'search'
+		)
+));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formRow($form->get('title'));
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
+?>
+<?php }?>
