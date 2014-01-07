@@ -4,7 +4,6 @@ jQuery(function($){
 		var row = $(this);
 		var row_id = $(this).attr('id');
 		var id = row_id.replace("remove-","");
-		console.log('Ciao Fabio');
 		$.post("/album/delete", {
 			id: id
 		})
