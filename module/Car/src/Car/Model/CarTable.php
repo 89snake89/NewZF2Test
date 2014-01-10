@@ -24,6 +24,7 @@ class CarTable
         if ($paginated) {
             // create a new Select object for the table cars
             $select = new \Zend\Db\Sql\Select('cars');
+            $select->order('brand');
             // create a new result set based on the Car entity
             $resultSetPrototype = new ResultSet();
             $resultSetPrototype->setArrayObjectPrototype(new Car());
