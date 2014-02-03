@@ -1,4 +1,9 @@
 <?php
+/**
+ * Album controller class
+ * @author fabio
+ *
+ */
 namespace Album\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
