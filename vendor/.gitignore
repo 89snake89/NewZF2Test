@@ -3,3 +3,7 @@
 composer
 zendframework
 autoload.php
+/phpdocumentor/
+/phpspec/
+/phpunit/
+/sebastian/
